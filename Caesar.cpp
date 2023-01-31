@@ -6,6 +6,7 @@ using namespace std;
 
 string caesarEncryption(string plaintext, int key)
 {
+	// coolguy
   string ciphertext = "";
   for (int i = 0; i < plaintext.length(); i++) {
     if (isalpha(plaintext[i])) {
