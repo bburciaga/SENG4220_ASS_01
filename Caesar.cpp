@@ -27,7 +27,7 @@ string caesarDecryption(string ciphertext, int key)
   return caesarEncryption(ciphertext, -1 * key);
 }
 
-int main()
+/*int main()
 {
   int key;
   string plaintext;
@@ -40,4 +40,4 @@ int main()
   cout << "The Ciphertext is: " << encryptedText << endl;
   cout << "The Plaintext  is: " << decryptedText << endl;
   return 0;
-}
+}*/

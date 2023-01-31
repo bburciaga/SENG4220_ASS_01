@@ -1,5 +1,5 @@
 /*
-This client send messages to a server. That's it. 
+This client send messages to a server. That's it.
 compile: g++ client.cpp -o client
 run: ./client <server IP> <server port>
 
@@ -16,6 +16,7 @@ Author: Sina Keshvadi
 #include <cstdlib>
 #include <string>
 #include <cstring>
+#include "Caesar.cpp"
 using namespace std;
 
 
@@ -45,10 +46,16 @@ int main(int argc, char const *argv[])
     memset(message, 0, sizeof(message));
     while (1)
     {
+        // inputing values into msg
         getline(cin, msg, '\n');
+        // We have msg from client
+        // convert string with caeser cipher
+        msg = caesarEncryption(msg, 6);
         strcpy(message, msg.c_str());
+        // send message to the server assumption
         send(client_socket, &message, (size_t)strlen(message), 0);
         memset(message, 0, sizeof(message));
+        // server received message assumption
         recv(client_socket, &message, sizeof(message), 0);
         cout << "Server: " << message << endl;
         memset(message, 0, sizeof(message));
