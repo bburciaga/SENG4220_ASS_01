@@ -13,14 +13,15 @@ Author: Sina Keshvadi
 #include <iostream>
 #include <string.h> // memset
 #include <unistd.h> // close
+#include "Caesar.cpp"
+#include "BruteForce.cpp"
 
 using namespace std;
 
 void show_message(int n, string message);
 void handle_client(int tcp_socket);
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
     if (argc != 2)
         show_message(-1, "usage: ./server <Port Number>");
 
@@ -51,8 +52,7 @@ int main(int argc, char const *argv[])
     cout << "Server: Waiting for connections ... \n";
 
     // accept()
-    while (1)
-    {
+    while (1) {
         if (!fork())
             handle_client(accept(server_socket, server_info->ai_addr, &server_info->ai_addrlen));
     }
@@ -62,27 +62,32 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-void show_message(int n, string message)
-{
-    if (n < 0)
-    {
+void show_message(int n, string message) {
+    if (n < 0) {
         cout << message << endl;
         exit(EXIT_FAILURE);
     }
 }
 
-void handle_client(int tcp_socket)
-{
+void handle_client(int tcp_socket) {
     char message[80];
     cout << "Client connected.\n";
     size_t recv_size;
-    while (1)
-    {
+    while (1) {
         memset(message, 0, sizeof(message));
         recv_size = recv(tcp_socket, &message, sizeof(message), 0);
         if (recv_size == 0)
             break;
-        cout << "Client: " << message << "\nsize: " << recv_size << endl;
+        string coolMessage(message);
+        // Caesar Decryption
+        // coolMessage = caesarDecryption(coolMessage, 6);
+        // Brute Force Decryption
+        coolMessage = bruteForce(coolMessage);
+        // Print decrypted message with Key
+        // cout << "Client: " << coolMessage << "\nsize: " << recv_size << endl;
+        // Print Brute Force decryptions
+        cout << "Client: " << message << endl;
+        cout << coolMessage << endl;
         send(tcp_socket, &message, sizeof(message), 0);
     }
     close(tcp_socket);
