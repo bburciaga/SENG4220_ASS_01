@@ -17,6 +17,8 @@ Author: Sina Keshvadi
 #include <string>
 #include <cstring>
 #include "Caesar.cpp"
+#include "OTP.cpp"
+
 using namespace std;
 
 
@@ -27,6 +29,17 @@ int main(int argc, char const *argv[])
         cout << "usage: "<< argv[0] << " <Server IP> <Port Number>\n";
         return (EXIT_FAILURE);
     }
+
+    int otpKey[80] = {
+      2,7,5,2,0,4,0,0,0,7,
+      7,2,6,4,0,1,0,2,4,2,
+      1,6,5,4,4,7,0,0,5,7,
+      2,6,0,5,3,2,3,6,1,7,
+      0,4,5,6,1,6,3,6,6,3,
+      1,7,7,0,7,2,0,0,5,1,
+      2,1,0,6,0,7,6,6,0,1,
+      0,1,2,7,1,1,7,2,4,7
+    };
 
     // Set destination info
     addrinfo hints, *server_info;
@@ -49,8 +62,10 @@ int main(int argc, char const *argv[])
         // inputing values into msg
         getline(cin, msg, '\n');
         // We have msg from client
-        // convert string with caeser cipher
-        msg = caesarEncryption(msg, 6);
+        // CONVERT STRING WITH CAESAR CIPHER
+        // msg = caesarEncryption(msg, 6);
+        // CONVERT STRING WITH OTP CIPHER
+        msg = otpEncryption(msg, otpKey);
         strcpy(message, msg.c_str());
         // send message to the server assumption
         send(client_socket, &message, (size_t)strlen(message), 0);

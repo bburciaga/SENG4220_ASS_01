@@ -14,6 +14,7 @@ Author: Sina Keshvadi
 #include <string.h> // memset
 #include <unistd.h> // close
 #include "Caesar.cpp"
+#include "OTP.cpp"
 #include "BruteForce.cpp"
 
 using namespace std;
@@ -70,6 +71,16 @@ void show_message(int n, string message) {
 }
 
 void handle_client(int tcp_socket) {
+    int otpKey[80] = {
+      2,7,5,2,0,4,0,0,0,7,
+      7,2,6,4,0,1,0,2,4,2,
+      1,6,5,4,4,7,0,0,5,7,
+      2,6,0,5,3,2,3,6,1,7,
+      0,4,5,6,1,6,3,6,6,3,
+      1,7,7,0,7,2,0,0,5,1,
+      2,1,0,6,0,7,6,6,0,1,
+      0,1,2,7,1,1,7,2,4,7
+    };
     char message[80];
     cout << "Client connected.\n";
     size_t recv_size;
@@ -79,10 +90,12 @@ void handle_client(int tcp_socket) {
         if (recv_size == 0)
             break;
         string coolMessage(message);
-        // Caesar Decryption
+        // CAESAR DECRYPTION
         // coolMessage = caesarDecryption(coolMessage, 6);
-        // Brute Force Decryption
-        coolMessage = bruteForce(coolMessage);
+        // BRUTE FORCE DECRYPTION
+        // coolMessage = bruteForce(coolMessage);
+        // OTP DECRYPTION
+        coolMessage = otpDecryption(coolMessage, otpKey);
         // Print decrypted message with Key
         // cout << "Client: " << coolMessage << "\nsize: " << recv_size << endl;
         // Print Brute Force decryptions
