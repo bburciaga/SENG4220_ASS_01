@@ -6,14 +6,21 @@ using namespace std;
 
 string caesarEncryption(string plaintext, int key) {
   string ciphertext = "";
-  for (int i = 0; i < plaintext.length(); i++) {
-    if (isalpha(plaintext[i])) {
-      int num = plaintext[i];
-      if (num + key > 122) ciphertext += plaintext[i] - 26 + key;
-      else if (num + key < 97) ciphertext += plaintext[i] + 26 + key;
-      else ciphertext += plaintext[i] + key;
+  string lowerPlain = "";
+  
+  for (int i = 0; i < plaintext.length(); i++)
+    lowerPlain += tolower(plaintext[i]);
+
+  cout << lowerPlain << endl;
+  
+  for (int i = 0; i < lowerPlain.length(); i++) {
+    if (isalpha(lowerPlain[i])) {
+      int num = lowerPlain[i];
+      if (num + key > 122) ciphertext += lowerPlain[i] - 26 + key;
+      else if (num + key < 97) ciphertext += lowerPlain[i] + 26 + key;
+      else ciphertext += lowerPlain[i] + key;
     }
-    else ciphertext += plaintext[i];
+    else ciphertext += lowerPlain[i];
   }
   return ciphertext;
 }

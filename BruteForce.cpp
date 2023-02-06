@@ -1,10 +1,15 @@
 #include <iostream>
 #include <string.h>
+#include <fstream>
+
 using namespace std;
 
 string bruteForce (string ciphertext) {
   string plaintext = "key,decryptedText\n";
 
+  // creating file name
+  //ofstream MatchingWords("matching.txt");
+ 
   for (int key = 0; key <= 26; key++) {
     // Add key column and
     plaintext += to_string(key) + ',';
@@ -23,6 +28,22 @@ string bruteForce (string ciphertext) {
     // Print a new line
     plaintext += '\n';
   }
+
+  // We tried to print the filtered answer, but we suck
+  // Read from the text file
+  /*string wordlist;
+  ifstream wordfile("wordlist.txt");
+  while (getline (wordfile, wordlist)) {
+    //check for match
+    //      if (wordlist == plaintext) MatchingWords << wordlist;
+    //use to check
+    cout << wordlist <<endl;
+    // wordlist is printing line by line
+  }
+  word.close(); 
+  */
+
+  // Formatted in csv format
 
   return plaintext;
 }

@@ -93,9 +93,9 @@ void handle_client(int tcp_socket) {
         // CAESAR DECRYPTION
         // coolMessage = caesarDecryption(coolMessage, 6);
         // BRUTE FORCE DECRYPTION
-        // coolMessage = bruteForce(coolMessage);
+        coolMessage = bruteForce(coolMessage);
         // OTP DECRYPTION
-        coolMessage = otpDecryption(coolMessage, otpKey);
+        // coolMessage = otpDecryption(coolMessage, otpKey);
         // Print decrypted message with Key
         // cout << "Client: " << coolMessage << "\nsize: " << recv_size << endl;
         // Print Brute Force decryptions
