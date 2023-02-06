@@ -63,9 +63,9 @@ int main(int argc, char const *argv[])
         getline(cin, msg, '\n');
         // We have msg from client
         // CONVERT STRING WITH CAESAR CIPHER
-        msg = caesarEncryption(msg, 6);
+        //msg = caesarEncryption(msg, 6);
         // CONVERT STRING WITH OTP CIPHER
-        // msg = otpEncryption(msg, otpKey);
+        msg = otpEncryption(msg, otpKey);
         strcpy(message, msg.c_str());
         // send message to the server assumption
         send(client_socket, &message, (size_t)strlen(message), 0);
