@@ -1,7 +1,7 @@
 # Caesar Encryption and OTP Encryption
 
 ## Brian Burciaga T00566000
-## Desmond
+## Desmond T00672738
 
 The purpose of this lab is to understand encryption and decryption
 with Caesar Algorithm and OTP. 
