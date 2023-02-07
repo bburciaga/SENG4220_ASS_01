@@ -45,30 +45,42 @@ string bruteForce (string ciphertext) {
 */ 
 
   ifstream input("wordlist.txt");
-
   string word;
+  string hackedText = "";
+  // =============Word List loop==================//
   while (true) {
     // THe word from the list
     input >> word;
 
     // At end of list
     if (input.fail()) break;
-    // cout << "Word: " << word << endl;
 
     // lines from plaintext
     istringstream lines(plaintext);
     string line;
+    // ==============PlainText loop=================//
     while (getline(lines, line)) {
+      //cout << "Line: " << line << endl;
+      // Lets delimit some shit
       string delimiter = " ";
       size_t pos = 0;
       string token;
-      
-      
-      // cout << "Plain Line: " << line << endl;
-      // Lets delimit some shit
-      
+      bool flag = false;
+      string coolLine = line;
+      // ===============Line Loop===================//
+      while ((pos = line.find(delimiter)) != string::npos) {
+        token = line.substr(0, pos);
+        if (word == token) {
+          cout << word.compare(token) << endl;
+          cout << "Word: " << word << endl;
+          cout << "Token: " << token << endl;
+          flag = true;
+        }
+        line.erase(0, pos + delimiter.length());
+      }
+//      if (flag) hackedText += coolLine + "\n";
     }
   }
 
-  return plaintext;
+  return hackedText;
 }
