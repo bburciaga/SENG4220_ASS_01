@@ -89,14 +89,14 @@ void handle_client(int tcp_socket) {
     recv_size = recv(tcp_socket, &message, sizeof(message), 0);
     if (recv_size == 0)
         break;
-    // Named cool message because it's just a random message
+    // Named cool message because it's just a random name
     string coolMessage(message);
     // CAESAR DECRYPTION
     //coolMessage = caesarDecryption(coolMessage, 6);
     // BRUTE FORCE DECRYPTION
-    //coolMessage = bruteForce(coolMessage);
+    coolMessage = bruteForce(coolMessage);
     // OTP DECRYPTION
-    coolMessage = otpDecryption(coolMessage, otpKey);
+    //coolMessage = otpDecryption(coolMessage, otpKey);
     // Print decrypted message with Key
     // cout << "Client: " << coolMessage << "\nsize: " << recv_size << endl;
     // Print Brute Force decryptions
