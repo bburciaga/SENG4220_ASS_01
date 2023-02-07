@@ -6,11 +6,7 @@
 using namespace std;
 
 string bruteForce (string ciphertext) {
-//  string plaintext = "key,decryptedText\n";
   string plaintext = "";
-
-  // creating file name
-//  ofstream MatchingWords("matching.txt");
  
   for (int key = 0; key <= 26; key++) {
     // Add key column and
@@ -31,32 +27,6 @@ string bruteForce (string ciphertext) {
     plaintext += '\n';
   }
 
-/*
-  while (true) {
-    // lines from plaintext
-    istringstream lines(plaintext);
-    string line;
-    string coolLine = line;
-    int counter = 0;
-    // ==============PlainText loop=================//
-    while (getline(lines, line)) {
-      //cout << "Line: " << line << endl;
-      // Lets delimit some shit
-      string delimiter = " ";
-      size_t pos = 0;
-      string token;
-      // ===============Line Loop===================//
-      while ((pos = line.find(delimiter)) != string::npos) {
-      }
-    }
-    if (counter > 0)
-      cout << "Counter: " << counter << endl;
-    if (counter >= 3) {
-      hackedText += coolLine + "\n";
-    }
-  }
-*/
-
   istringstream lines(plaintext);
   string line;
   string hackedText = "";
@@ -67,9 +37,10 @@ string bruteForce (string ciphertext) {
     string delimiter = " ";
     size_t pos = 0;
     int counter = 0;
+    int wordCounter = 0;
     string token;
 
-    cout << "Line: " << line << endl;
+    //cout << "Line: " << line << endl;
 
     //=================Line Loop=================//
     while ((pos = line.find(delimiter)) != string::npos) {
@@ -78,7 +49,8 @@ string bruteForce (string ciphertext) {
       // Create subword from pos to delimiter " "
       token = line.substr(0, pos);
       
-      cout << "Token: " << token << endl;
+      //cout << "Token: " << token << endl;
+      wordCounter++;
 
       while (true) {
         // THe word from the list
@@ -88,20 +60,18 @@ string bruteForce (string ciphertext) {
         if (input.fail()) break;
 
         if (word == token) {
-          cout << "Token: " << token << endl;
-          cout << "Word: " << word << endl;
+          //cout << "Token: " << token << endl;
+          //cout << "Word: " << word << endl;
           counter++;
         }
       }
       // Erase word from 0 to delimiter " "
       line.erase(0, pos + delimiter.length());
     }
-    cout << "Counter: " << counter << endl;
-/*
-    if (counter >= 2) {
+    //cout << "Counter: " << counter << endl;
+    if (counter >= wordCounter - 1) {
       hackedText += dupLine + "\n"; 
     }
-*/
   }
 
   return hackedText;
